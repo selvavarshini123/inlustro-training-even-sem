@@ -1,0 +1,228 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP1rtjlNAVgE2pS77yjNuFl",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/selvavarshini123/Ilustro-training/blob/main/nlp_tasks.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "ZLOy5ASOS4f_"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "import nltk\n",
+        "from nltk.tokenize import word_tokenize\n",
+        "from nltk.stem import PorterStemmer,LancasterStemmer,SnowballStemmer\n",
+        "from nltk.stem import WordNetLemmatizer\n",
+        "from nltk.corpus import wordnet\n",
+        "from nltk.corpus import stopwords"
+      ],
+      "metadata": {
+        "id": "3Jc2vv7jUZsC"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "nltk.download('punkt')\n",
+        "nltk.download('punkt_tab')\n",
+        "nltk.download('wordnet')\n",
+        "nltk.download('omw-1.4')\n",
+        "nltk.download('stopwords')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "twywqWWIU1rN",
+        "outputId": "c95a5761-a457-4c40-b493-58cf7425a60e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package punkt to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt.zip.\n",
+            "[nltk_data] Downloading package punkt_tab to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt_tab.zip.\n",
+            "[nltk_data] Downloading package wordnet to /root/nltk_data...\n",
+            "[nltk_data] Downloading package omw-1.4 to /root/nltk_data...\n",
+            "[nltk_data] Downloading package stopwords to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping corpora/stopwords.zip.\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 2
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "text=\"The striped bats are hanging on their feet and talking.  Running,flies,better,cared, studying\"\n",
+        "tokens= word_tokenize(text)\n",
+        "print (\" original Tokens:\", tokens)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MkQV65BBVjbJ",
+        "outputId": "9cb9ae56-fc30-4090-f5b9-11cca05846da"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            " original Tokens: ['The', 'striped', 'bats', 'are', 'hanging', 'on', 'their', 'feet', 'and', 'talking', '.', 'Running', ',', 'flies', ',', 'better', ',', 'cared', ',', 'studying']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "porter = PorterStemmer()\n",
+        "stemmed_words = [porter.stem(word) for word in tokens]\n",
+        "print (\"Porter Stemmer:\",stemmed_words)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "kr5vF1KhVmEc",
+        "outputId": "30c7f330-cdff-4588-9646-ae50074849a5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Porter Stemmer: ['the', 'stripe', 'bat', 'are', 'hang', 'on', 'their', 'feet', 'and', 'talk', '.', 'run', ',', 'fli', ',', 'better', ',', 'care', ',', 'studi']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "lemmatizer = WordNetLemmatizer()\n",
+        "lemmatized_words = [lemmatizer.lemmatize(word) for word in tokens]\n",
+        "print (\"Lemmatized Words:\",lemmatized_words)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "G9fUgouVWRl5",
+        "outputId": "ee73a6cc-ce3b-4443-ce6e-6ea1113d928c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Lemmatized Words: ['The', 'striped', 'bat', 'are', 'hanging', 'on', 'their', 'foot', 'and', 'talking', '.', 'Running', ',', 'fly', ',', 'better', ',', 'cared', ',', 'studying']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "tokens = [word.lower() for word in tokens]\n",
+        "print (\"Lowercased Tokens:\", tokens)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hcD9yKkYW4Ej",
+        "outputId": "d835ecfc-582d-4c75-cb7f-22f93e1e0318"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Lowercased Tokens: ['the', 'striped', 'bats', 'are', 'hanging', 'on', 'their', 'feet', 'and', 'talking', '.', 'running', ',', 'flies', ',', 'better', ',', 'cared', ',', 'studying']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "default_stopwords = set(stopwords.words('english'))\n",
+        "default_filtered_tokens = [word for word in tokens if word not in default_stopwords]\n",
+        "print(\"Tokens after removing default stopwords:\",default_filtered_tokens)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "u8ZIiQtEW-JW",
+        "outputId": "46090a5a-4cb8-445e-a640-7191a683bfc9"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Tokens after removing default stopwords: ['striped', 'bats', 'hanging', 'feet', 'talking', '.', 'running', ',', 'flies', ',', 'better', ',', 'cared', ',', 'studying']\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
