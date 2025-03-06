@@ -1,0 +1,70 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMTNpOAHtp4uLHPkqbt8RtV",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Srivarsini2006/Inlustro-training/blob/main/api_key.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "hVPaaRHeUev3",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 176
+        },
+        "outputId": "7a36cc94-0777-4a95-9694-89d7d15aeb34"
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Welcome to AI chatbot! Type 'exit' to stop.\n",
+            "you:Hi\n",
+            "AI: Hi there! How can I help you today?\n",
+            "\n",
+            "you:How are you? \n",
+            "AI: I'm doing well, thank you for asking!  How are you?  As a large language model, I don't experience emotions or feelings like humans do, but I'm functioning optimally and ready to assist you.\n",
+            "\n",
+            "you:Exit\n"
+          ]
+        }
+      ],
+      "source": [
+        "from google.generativeai import GenerativeModel, configure\n",
+        "configure (api_key=\"AIzaSyDsGPUOlycf_0H8P2AB-g9yBjgIPcXgxRM\")\n",
+        "model = GenerativeModel (\"gemini-1.5-pro\")\n",
+        "print(\"Welcome to AI chatbot! Type 'exit' to stop.\")\n",
+        "while True:\n",
+        "     user_input = input(\"you:\")\n",
+        "     if user_input.lower() == \"exit\":\n",
+        "        break\n",
+        "     response = model.generate_content(user_input)\n",
+        "     print(\"AI:\", response.text)"
+      ]
+    }
+  ]
+}
